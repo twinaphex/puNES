@@ -33,13 +33,7 @@
 #include "recent_roms.h"
 #include "uncompress.h"
 
-#if defined (__WIN32__)
-int WINAPI WinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR szCmdLine, int iCmdShow) {
-	int argc = __argc;
-	char **argv = (char **)__argv;
-#else
 int main(int argc, char **argv) {
-#endif
 	BYTE optind;
 
 	memset(&info, 0x00, sizeof(info));

@@ -700,10 +700,6 @@ int emu_power_of_two(int base) {
 	return (pot);
 }
 void emu_quit(BYTE exit_code) {
-	if (cfg->save_on_exit) {
-		settings_save();
-	}
-
 	map_quit();
 
 	cheatslist_quit();
