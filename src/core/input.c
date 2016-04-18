@@ -374,15 +374,6 @@ BYTE input_rd_reg_zapper(BYTE openbus, WORD **screen_index, BYTE nport) {
 	}
 
 	if (!mouse.right) {
-#if defined (WITH_OPENGL)
-		if (gfx.opengl) {
-			gx -= gfx.vp.x;
-			gy -= gfx.vp.y;
-		}
-#elif defined (WITH_D3D9)
-		gx -= gfx.vp.x;
-		gy -= gfx.vp.y;
-#endif
 		x_zapper = gx / gfx.w_pr;
 		y_zapper = gy / gfx.h_pr;
 

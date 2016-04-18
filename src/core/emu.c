@@ -70,8 +70,6 @@ BYTE emu_frame(void) {
 	WORD PCBREAK = 0xA930;
 #endif
 
-	gui_control_visible_cursor();
-
 	tas.lag_frame = TRUE;
 
 	/* gestione uscita */
@@ -121,11 +119,7 @@ BYTE emu_frame(void) {
 			snd_end_frame();
 		}
 
-//#if defined (DEBUG)
-//		gfx_draw_screen(TRUE);
-//#else
 		gfx_draw_screen(FALSE);
-//#endif
 
 		if (!tas.type && (++tl.frames == tl.frames_snap)) {
 			timeline_snap(TL_NORMAL);
@@ -580,14 +574,10 @@ BYTE emu_turn_on(void) {
 	/* The End */
 	return (EXIT_OK);
 }
+
 void emu_pause(BYTE mode) {
-	if (mode == TRUE) {
-		info.pause = TRUE;
-	} else if (info.pause_from_gui == FALSE) {
-		info.pause = FALSE;
-		fps.next_frame = gui_get_ms();
-	}
 }
+
 BYTE emu_reset(BYTE type) {
 	emu_pause(TRUE);
 
