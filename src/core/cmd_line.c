@@ -202,13 +202,8 @@ BYTE cmd_line_parse(int argc, char **argv) {
 BYTE cmd_line_check_portable(int argc, char **argv) {
 	int opt;
 
-#if defined (__WIN32__)
-	if (!(strncmp(argv[0] + (strlen(argv[0]) - 6), "_p", 2))) {
-#else
-	if (!(strcmp(argv[0] + (strlen(argv[0]) - 2), "_p"))) {
-#endif
+	if (!(strcmp(argv[0] + (strlen(argv[0]) - 2), "_p")))
 		return (TRUE);
-	}
 
 	for (opt = 0; opt < argc; opt++) {
 		if (!(strcmp(argv[opt], "--portable"))) {
@@ -292,7 +287,6 @@ void usage(char *name) {
 			main_cfg[SET_CHEAT_MODE].hlp,
 			main_cfg[SET_GUI_LANGUAGE].hlp
 	);
-	gui_print_usage(usage_string);
 	free(usage_string);
 
 	emu_quit(EXIT_SUCCESS);

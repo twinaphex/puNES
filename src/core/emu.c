@@ -48,9 +48,6 @@
 #include "cheat.h"
 #include "overscan.h"
 #include "recent_roms.h"
-#if defined (WITH_OPENGL)
-#include "opengl.h"
-#endif
 #include "uncompress.h"
 #include "gui.h"
 
@@ -71,10 +68,6 @@
 BYTE emu_frame(void) {
 #if defined (DEBUG)
 	WORD PCBREAK = 0xA930;
-#endif
-
-#if defined (WITH_OPENGL) && defined (__WIN32__)
-	gfx_sdlwe_tick();
 #endif
 
 	gui_control_visible_cursor();
@@ -165,15 +158,9 @@ BYTE emu_make_dir(const char *fmt, ...) {
 			return (EXIT_ERROR);
 		}
 	} else {
-#if defined (__WIN32__)
-		if (mkdir(path)) {
-			return (EXIT_ERROR);
-		}
-#else
 		if (mkdir(path, S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH)) {
 			return (EXIT_ERROR);
 		}
-#endif
 	}
 	return (EXIT_OK);
 }
@@ -488,13 +475,6 @@ void emu_set_title(char *title) {
 	}
 #endif
 
-#if defined (WITH_OPENGL)
-	if (cfg->scale != X1) {
-		strcat(title, ", ");
-		strcat(title, opt_rend[cfg->render].lname);
-	}
-#endif
-
 	strcat(title, ")");
 }
 BYTE emu_turn_on(void) {
@@ -542,9 +522,8 @@ BYTE emu_turn_on(void) {
 	apu_turn_on();
 
 	/* PPU */
-	if (ppu_turn_on()) {
+	if (ppu_turn_on())
 		return (EXIT_ERROR);
-	}
 
 	/* CPU */
 	cpu_turn_on();
@@ -553,9 +532,8 @@ BYTE emu_turn_on(void) {
 	 * ...e inizializzazione della mapper (che
 	 * deve necessariamente seguire quella della PPU.
 	 */
-	if (map_init()) {
+	if (map_init())
 		return (EXIT_ERROR);
-	}
 
 	init_PC()
 
@@ -749,8 +727,6 @@ void emu_quit(BYTE exit_code) {
 	js_quit();
 
 	uncomp_quit();
-
-	gui_quit();
 
 	exit(exit_code);
 }

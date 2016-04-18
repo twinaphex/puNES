@@ -16,14 +16,6 @@
  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  */
 
-#if defined (WITH_OPENGL)
-#include <time.h>
-#elif defined (WITH_D3D9)
-#include <string.h>
-#include <stdarg.h>
-#include <stdlib.h>
-#include <stdio.h>
-#endif
 #include "text.h"
 #include "gfx.h"
 #include "font.h"

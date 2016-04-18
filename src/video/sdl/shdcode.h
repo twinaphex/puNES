@@ -20,18 +20,7 @@
 #define SHDCODE_H_
 
 enum shader_code_enum {
-	shc_no_filter,
-	shc_blend,
-	shc_crt_crt_caligari,
-	shc_crt_crt_geom,
-	shc_crt_dotmask,
-	shc_crt_tvout_tweaks,
-	shc_misc_image_adjustment,
-	shc_mudlord_emboss,
-	shc_mudlord_noise_mudlord,
-	shc_mudlord_oldtv,
-	shc_ntsc_ntsc_pass1_composite_2phase,
-	shc_ntsc_ntsc_pass2_2phase,
+	shc_no_filter
 };
 enum lut_code_enum {
 	lut_none,
@@ -40,21 +29,6 @@ enum lut_code_enum {
 typedef struct _shader_code {
 	const char *code;
 } _shader_code;
-
-static const _shader_code shader_code[] = {
-#include "shaders/no_filter.h"
-#include "shaders/blend.h"
-#include "shaders/crt/crt-caligari.h"
-#include "shaders/crt/crt-geom.h"
-#include "shaders/crt/dotmask.h"
-#include "shaders/crt/tvout-tweaks.h"
-#include "shaders/misc/image-adjustment.h"
-#include "shaders/mudlord/emboss.h"
-#include "shaders/mudlord/noise-mudlord.h"
-#include "shaders/mudlord/oldtv.h"
-#include "shaders/ntsc/ntsc-pass1-composite-2phase.h"
-#include "shaders/ntsc/ntsc-pass2-2phase.h"
-};
 
 static const _shader_code lut_resource[] = {
 	{ "" },
